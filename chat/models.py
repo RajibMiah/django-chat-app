@@ -1,5 +1,4 @@
-from pyexpat import model
-from sqlite3 import Timestamp
+
 from django.db import models
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
@@ -7,7 +6,7 @@ from django.contrib.auth.models import AbstractUser
 
 
 class User(AbstractUser):
-    profile_pic = models.ImageField(upload_to = "profilepics/" , default = 'profilepics/user.jpg' , null = True , blank = True , editable = True)
+    profile_pic = models.ImageField(upload_to = "profilepics/" , default = 'profilepics/user.png' , null = True , blank = True , editable = True)
 
 
 class Message(models.Model):
@@ -26,4 +25,4 @@ class Message(models.Model):
 class contact(models.Model):
     channel_name = models.TextField(null = True)
     contact_id = models.ForeignKey(settings.AUTH_USER_MODEL , related_name='contact' , on_delete=models.DO_NOTHING)
-            
+

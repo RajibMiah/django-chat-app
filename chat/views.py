@@ -1,14 +1,12 @@
 from django.shortcuts import render
-
-# Create your views here.
-
 import json
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 from django.utils.safestring import mark_safe
 from django.contrib.sites.shortcuts import get_current_site
-from django.contrib.auth.forms import UserCreationForm
 from .forms import RegistrationForm
+from django.contrib.auth import logout
+from django.shortcuts import redirect
 
 def signup(request):
     if request.method == 'POST':
@@ -22,16 +20,13 @@ def signup(request):
 
 @login_required
 def chatpage(request):
-    return render(request, 'chat/chatpage.html', {        
+    return render(request, 'chat/chat/chatpage.html', {        
         'username': mark_safe(json.dumps(request.user.username)),
         'userid': mark_safe(json.dumps(request.user.id)),
         'domain':mark_safe(json.dumps(get_current_site(request).domain))
     })  
 
-def home(request):
-    return render(request , 'chat/index.html')
 
-
-def room(request, room_name):
-    context ={'room_name': room_name}
-    return render(request, 'chat/room.html', context )
+def logout_view(request):
+    logout(request)
+    return redirect('/admin/')
