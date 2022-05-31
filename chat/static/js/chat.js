@@ -4,11 +4,19 @@ var username;
 var contactList = Object();
 var srchactive= false;
 var ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
-var socket = new ReconnectingWebSocket(ws_scheme + '://'+host+'/ws/chat/');  //remember to change this
+// var socket = new ReconnectingWebSocket(ws_scheme + '://'+host+'/ws/chat/');  //remember to change this
 
+const chatSocket = new WebSocket(
+    'ws://'
+    + window.location.host
+    + '/ws/chat/'
+    // + roomName
+    // + '/'
+);
 
 socket.onopen = function(e)
 {    
+   console.log('opened')
    socket.send(JSON.stringify({
        "command":"CACHE_CHAT"
    }));

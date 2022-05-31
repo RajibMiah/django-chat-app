@@ -1,3 +1,4 @@
+
 {% load static %}
 <!--DOCTYPE html-->
 <html class=''>
@@ -41,10 +42,7 @@
 				<!--a href="">
 				<button id="addcontact"><span> Back to AskOn </span><i class="fas fa-sign-in-alt"></i></button>
 				</a-->
-
-
 				<a href="{% url 'logout' %}"><button id="settings"> <span> Logout </span> <i class="fas fa-sign-out-alt" aria-hidden="true"></i></button></a>
-			
 			</div>
 		</div>
 		<div class="content">
@@ -72,9 +70,10 @@
 
 	<script src="{% static 'js/reconnecting-websocket.min.js' %}"></script>
 	<script>
-		var username = { username };
-		var userid = {userid };
-		var host = { domain };
+		var username = {{ username }};
+		var userid = {{ userid }};
+		var host = {{ domain }};
+		console.log('host' , host)
 		
 	</script>
 	<script src="{% static 'js/chat.js' %}"></script>

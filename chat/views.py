@@ -20,6 +20,8 @@ def signup(request):
 
 @login_required
 def chatpage(request):
+    print('user-name' , request.user.username)
+
     return render(request, 'chat/chat/chatpage.html', {        
         'username': mark_safe(json.dumps(request.user.username)),
         'userid': mark_safe(json.dumps(request.user.id)),
