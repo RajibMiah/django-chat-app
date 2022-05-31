@@ -23,6 +23,7 @@ class Message(models.Model):
         return Message.objects.order_by('timestamp').all()
 
 class contact(models.Model):
+    
     channel_name = models.TextField(null = True)
     contact_id = models.ForeignKey(settings.AUTH_USER_MODEL , related_name='contact' , on_delete=models.DO_NOTHING)
 
